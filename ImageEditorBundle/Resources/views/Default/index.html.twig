@@ -1,0 +1,15 @@
+{% extends 'ImageEditorBundle::base.html.twig' %}
+
+{% block title %}Index{% endblock %}
+
+{% block body %}
+
+
+<div class="row">
+{{form_start(form)}}
+{{form_errors(form)}}
+{{form_row(form.file)}}
+<button type="submit">Wrzuć zdjęcie</button>
+{{form_end(form)}}
+</div>
+{% endblock %}

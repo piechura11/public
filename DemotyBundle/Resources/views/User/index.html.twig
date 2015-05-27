@@ -1,0 +1,47 @@
+{% extends 'DemotyBundle::baseUser.html.twig' %}
+
+{% block title %}Demotywator{% endblock %}
+
+{% block body %}
+
+<div class="row">
+<div class="large-3 columns">lewy
+</div>
+<div class="large-6 columns">
+
+{% for dana in dane%}
+
+
+
+
+ <h3>{{dana.title}} </h3>    <div class="right">{{dana.addDate|date('Y-m-d H:i:s')}}  </div>
+  <br>
+ <div class="upper">
+ <br>
+ {{dana.upperTex}}
+  <br>
+   <br>
+  </div>
+
+
+ <div class="mem_image">
+ <a href="http://localhost/web/uploads/documents/{{dana.path}}"><img  src="http://localhost/web/uploads/documents/{{dana.path}}"></a>  
+  <div class="lower">  
+
+   <br>
+  {{dana.lowTex}} 
+   <br>
+
+  </div>
+ 
+
+</div>
+{% endfor %}
+
+
+
+</div>
+<div class="large-3 columns">prawa
+</div>
+</div>
+{% endblock %}

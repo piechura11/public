@@ -1,0 +1,17 @@
+{% extends 'DemotyBundle::baseAdmin.html.twig' %}
+
+{% block title %}Demotywator{% endblock %}
+
+{% block body %}
+
+<div class="row">
+Kontakt
+{{form_start(form)}}
+{{form_errors(form)}}
+{{form_row(form.mail)}}
+{{form_row(form.temat)}}
+{{form_row(form.tresc)}}
+<button type="submit">Wyślij wiadomość</button>
+{{form_end(form)}}
+</div>
+{% endblock %}

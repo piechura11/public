@@ -1,0 +1,4 @@
+services:
+    edition:
+        class: ImageEditorBundle\Service\Edition
+

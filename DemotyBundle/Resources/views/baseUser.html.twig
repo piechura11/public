@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+ <html>
+     <head>
+         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+         <title>{% block title %}Blog{% endblock %}</title>
+         {% block stylesheets %}
+         <link href="{{ asset('css/foundation.min.css') }}" rel="stylesheet" />
+         <link href="{{ asset('css/style.css') }}" rel="stylesheet" />
+         {% endblock %}
+
+         <style>
+         .upper {
+        background-color: black;
+
+        font-weight: bold;
+
+        color: white;
+        text-align: center;
+        }
+        .lower {
+        background-color: black;
+
+        font-weight: bold;
+
+        color: white;
+        text-align: center;
+        }
+         </style>   
+     </head>
+     <body>
+<div class="row">
+<div class="large-12 columns">
+            {% block header%}
+
+
+<div class="nav-bar right">
+<ul class="button-group">
+<li><a href="http://localhost/s2bs1/web/app_dev.php/user/index" class="button">Home</a></li>
+<li><a href="http://localhost/s2bs1/web/app_dev.php/user/showlast/5" class="button">Pokaż ostatnie</a></li>
+<li><a href="http://localhost/s2bs1/web/app_dev.php/user/addMem" class="button">Nowy mem</a></li>
+
+
+<li><a href="http://localhost/s2bs1/web/app_dev.php/user/mail" class="button">Kontakt</a></li>
+<li><a href="http://localhost/s2bs1/web/app_dev.php/administrator/indexall" class="button">Admin</a></li>
+</ul>
+</div>
+<h1>Demotywatory <small>Piechurki</small></h1>
+<hr/>
+
+        {% endblock %}
+</div>
+</div>
+
+         <div class="row">
+            <div class="large-12 columns">
+                <div class="panel">
+             {% block body %}
+         
+             {% endblock %}
+
+                </div>
+            </div>
+         </div>
+     </body>
+ </html>

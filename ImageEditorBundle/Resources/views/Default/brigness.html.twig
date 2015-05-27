@@ -1,0 +1,16 @@
+{% extends 'ImageEditorBundle::Default/menu.html.twig' %}
+
+{% block title %}Jasnosć{% endblock %}
+
+
+{% block menu%}
+<form action="http://localhost/s2bs1/web/app_dev.php/img/menu/brigness" method="POST">
+  Jasność:
+
+
+<input type="range" name="level" min="-50" max="50", value="0" step="1">
+<br>Kontrast:
+  <input type="range" name="contrast" min="-50" max="50", value="0" step="1">
+  <input type="submit">
+</form>
+{% endblock %}

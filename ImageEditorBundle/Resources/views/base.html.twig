@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+ <html>
+     <head>
+         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+         <title>{% block title %}Blog{% endblock %}</title>
+         {% block stylesheets %}
+         <link href="{{ asset('css/foundation.min.css') }}" rel="stylesheet" />
+         <script src="{{ asset('js/vendor/jquery.js') }}"></script>
+         <script src="{{ asset('js/foundation/foundation.js') }}"></script>
+         <script src="{{ asset('js/foundation/foundation.slider.js') }}"></script>
+         <script src="{{ asset('http://webfx.eae.net/dhtml/genresize/genresize.js') }}"></script>
+        
+        <script>
+
+$(document).foundation();
+
+$(document).ready(function(){
+  $('.reveal-modal').foundation('reveal','open');
+});
+
+$(document).on('opened.fndtn.reveal', '[data-reveal]', function () {
+  $(document).foundation('reflow');
+});    
+
+</script>
+
+
+         {% endblock %}
+     </head>
+     <body>
+<div class="row">
+<div class="large-12 columns">
+            {% block header%}
+
+
+<div class="nav-bar right">
+<ul class="button-group">
+<li><a href="http://localhost/s2bs1/web/app_dev.php/img/main" class="button">Home</a></li>
+<li><a href="http://localhost/s2bs1/web/app_dev.php/img/menu/size" class="button">Wymiarowanie</a></li>
+<li><a href="http://localhost/s2bs1/web/app_dev.php/img/contrast" class="button">Kontrast</a></li>
+<li><a href="http://localhost/s2bs1/web/app_dev.php/img/menu" class="button">Menu</a></li>
+
+<li><a href="http://localhost/s2bs1/web/app_dev.php/administrator/email" class="button">Kontakt</a></li>
+
+</ul>
+</div>
+<h1>ImageEditor <small>P$P</small></h1>
+<hr/>
+
+        {% endblock %}
+</div>
+</div>
+
+         <div class="row">
+            <div class="large-12 columns">
+                <div class="panel">
+              
+    </div>
+</div>
+
+             {% block body %}
+
+                {% block menu%}
+                {% endblock %}
+             {% endblock %}
+
+                </div>
+            </div>
+         </div>
+     </body>
+ </html>

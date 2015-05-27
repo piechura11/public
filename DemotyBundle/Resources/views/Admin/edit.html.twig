@@ -1,0 +1,13 @@
+{% extends 'DemotyBundle::baseAdmin.html.twig' %}
+
+{% block title %}Witaj na Blogu {% endblock %}
+
+{% block body %}
+
+<form action="index" method="post" {{ form_enctype(form) }}>
+    {{ form_widget(form) }}
+
+    <input type="submit" value="Edutuj demotywatora!" />
+</form>
+
+{% endblock %}

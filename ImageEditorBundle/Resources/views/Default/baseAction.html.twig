@@ -1,0 +1,25 @@
+{% extends 'ImageEditorBundle::Default/menu.html.twig' %}
+
+{% block title %}Podstawowe{% endblock %}
+
+
+{% block menu %}
+<form action="http://localhost/s2bs1/web/app_dev.php/img/menu/base" method="POST"
+oninput="amount.value=rangeInput.value">
+  Jasność:
+<input type="range" name="level" min="-50" max="50", value="0" step="1">
+<output name="amount" for="rangeInput">0</output>
+<br>Kontrast:
+  <input type="range" name="contrast" min="-50" max="50", value="0" step="1">
+  <output name="amount" for="rangeInput">0</output>
+  </br>
+  <input type="checkbox" name="negate" value="true">Negatyw<br>
+  </br>
+  <input type="checkbox" name="edge" value="true">Edge<br>
+  </br>
+  <input type="checkbox" name="gray" value="true">Grayscale<br>
+  <input type="submit">
+</form>
+
+
+{% endblock %}
