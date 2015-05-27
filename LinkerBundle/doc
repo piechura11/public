@@ -1,0 +1,13 @@
+Entity Link
+-id
+-longLink
+-shortLink
+-description *
+-modyficator (public/private/protected)
+-password *
+
+
+
+controller
+-indexAction (strona glowna, formularz dodawania linku)
+-getAction (pobranie GETem /****, przekoierowanie do wyswietlenie strony, jeśli jest hasło, formularz)

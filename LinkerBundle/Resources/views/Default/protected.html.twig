@@ -1,0 +1,15 @@
+{% extends 'LinkerBundle::base.html.twig' %}
+
+{% block body %}
+
+Link <b>{{shortLink}}</b> zabezpieczony hasłem, aby przejść wpisz hasło </br>
+
+
+{{form_start(form)}}
+{{form_errors(form)}}
+
+{{form_row(form.password)}}
+<button type="submit">Przejdz do strony</button>
+{{form_end(form)}}
+
+{% endblock %}

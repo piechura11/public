@@ -1,0 +1,68 @@
+{% extends 'LinkerBundle::base.html.twig' %}
+
+{% block title %}Witaj {% endblock %}
+
+{% block body %}
+            Rezultaty:
+    </br>
+        Jesteś na {{page}} z {{totalPages}} stronie, liczba wszystkich dostępnych linków: {{totalCount}}
+        <table>
+            <thead>
+                <tr>
+                    <th>Skrócony link</th>
+                    <th>Docelowy adres</th>
+                    <th>Data dodania</th>
+                    <th>Opis</th>
+                </th>
+            </thead>
+            <tbody>
+        {% for dane in qb%}
+        <tr>
+        <th><a href="http://localhost/s2bs1/web/app_dev.php/show/{{dane.shortLink}}">
+            {{dane.shortLink}}</a>
+        </th>
+        <th>{{dane.longLink|longLinkFilter(dane.longLink)}}</th>
+        <th>{{ dane.addDate|date('Y-m-d H:i:s')  }}</th>
+        <th>{{dane.description}}</th>
+        </tr>
+        {% endfor %}
+
+            <tbody>
+        </table>
+        </div>
+
+        Przeglądaj strony:</br>
+        {% for item in pagesList%}
+        {% if page == item%}
+        <b>
+            <a href="http://localhost/s2bs1/web/app_dev.php/baza/{{rpp}}/{{item}}">{{item}} </a>
+        </b>
+        {% else %}
+        <a href="http://localhost/s2bs1/web/app_dev.php/baza/{{rpp}}/{{item}}">{{item}} </a>
+        {% endif %}
+        {% endfor%}
+        </br>
+        Pokaż na stronie: 
+        <select name="forma" onchange="location = this.options[this.selectedIndex].value;">
+            {% for number in option%}
+            {% if rpp == number %}
+            <option selected="selected" value="http://localhost/s2bs1/web/app_dev.php/baza/{{number}}/{{page}}">
+                    {{number}}
+                </option>
+            {% else %}
+            <option value="http://localhost/s2bs1/web/app_dev.php/baza/{{number}}/{{page}}">
+                    {{number}}
+            </option>
+            {% endif%}
+            {% endfor %}
+        </select>
+{% endblock %}
+
+
+
+
+
+
+
+
+
