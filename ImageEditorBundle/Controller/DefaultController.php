@@ -94,8 +94,37 @@ class DefaultController extends Controller
     header('Content-Type: image/jpeg');
     $session=$this->getRequest()->getSession();
     $img=$session->get('obrazek');
+    $prefix = 'http://localhost/web/uploads/obrazki/'.$img;
+    $request  = $this->getRequest();
+	$wsp = $request->request->all();
+	echo 'X1: '.$wsp['x1']; 
+		echo 'X1: '.$wsp['y1']; 
+			echo 'X1: '.$wsp['x2']; 
 
-    return $this->render('ImageEditorBundle:Default:sizeAction.html.twig', array('image'=>$img));
+	
+/*
+    $source = imagecreatefromjpeg($prefix);
+    list($width, $height) = getimagesize($prefix);
+
+    ///zczytanie wymiarów fotki
+    $newWidth = 300;
+	$newHeight = 225;
+	$mini = imagecreatetruecolor($newWidth, $newHeight);
+
+	imagecopyresized($mini,    // uchwyt obrazka wynikowego
+	$source,                      // uchwyt obrazka źródłowego 
+	20,                         // współrzędna x punktu od którego zaczynamy nanoszenie
+	60,                         // współrzędna y punktu od którego zaczynamy nanoszenie
+	0,                         // współrzędna x punktu od którego zaczynamy kopiowanie
+	0,                         // współrzędna y punktu od którego zaczynamy kopiowanie
+	$newWidth,                    // szerokość skopiowanego obrazka na obrazku wynikowym
+	$newHeight,                   // wysokość skopiowanego obrazka na obrazku wynikowym
+	$width,             // szerokość obszaru kopiowanego z obrazka źródłowego
+	$height);            // wysokość obszaru kopiowanego z obrazka źródłowego
+
+	imagejpeg($mini, null, 100);
+*/
+    return $this->render('ImageEditorBundle:Default:menuSize.html.twig', array('image'=>$img));
     }
 
 
