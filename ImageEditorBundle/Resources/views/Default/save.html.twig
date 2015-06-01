@@ -1,0 +1,14 @@
+{% extends 'ImageEditorBundle::base.html.twig' %}
+
+{% block title %}Index{% endblock %}
+
+{% block body %}
+
+
+<div class="row">
+
+Kliknij tutaj:</br>
+<a class="button" href="http://localhost/s2bs1/web/app_dev.php/img/download/{{image}}">Pobierz!</a></br>
+lub skopiuj adres:</br>
+<input type="text" value="http://localhost/s2bs1/web/app_dev.php/img/download/{{image}}"/>
+{% endblock %}

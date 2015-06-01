@@ -7,54 +7,24 @@
 
 <div class="row">
 <div class="large-8 columns">
-<nav class="top-bar">
-    <ul class="title-area">
-    <!-- Title Area -->
-        <li class="name"></li>
-        <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
-        <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
-    </ul>
- 
-    <!-- The Section wrap -->
-    <section class="top-bar-section">
-     
-        <!-- Left Nav Section -->
-        <ul class="left">
 
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="#">O nas</a></li>
-            <li class="has-dropdown not-click"><a href="http://localhost/s2bs1/web/app_dev.php/img/menu/base">Edytuj zdjęcie</a>
-            <ul class="dropdown">
-                    <li><a href="http://localhost/s2bs1/web/app_dev.php/img/menu/brigness">Jasność</a></li>
-                    <li ><a href="http://localhost/s2bs1/web/app_dev.php/img/menu/contrast">Kontrast</a></li>
-            </ul>
-            </li>
-            <li class="has-dropdown not-click"><a href="http://localhost/s2bs1/web/app_dev.php/img/menu/size">Rozmiar</a>
-            <ul class="dropdown">
-                    <li><a href="#">Zamówienie</a></li>
-                    <li ><a href="#">Transport i wysyłka</a></li>
-            </ul>
-            </li>
-            <li class="has-dropdown not-click"><a href="#">Realizacje</a>
-            <ul class="dropdown">
-                    <li><a href="#">Obecne</a></li>
-                    <li ><a href="#">Wykonane</a></li>
-            </ul>
-            </li>
-            <li><a href="#">Kontakt</a></li>
-        </ul>
- 
-        <!-- Right Nav Section -->
-        <ul class="right"></ul>
- 
-    </section>
-</nav>
+  
 <img src="http://localhost/web/uploads/obrazki/{{image}}">
 
 </div>
   <div class="large-4 columns">
 {% block menu %}
-
+<ul class="side-nav">
+  <li><a href="http://localhost/s2bs1/web/app_dev.php/img/menu/light">Światło i kolory</a></li>
+  <li><a href="http://localhost/s2bs1/web/app_dev.php/img/menu/size">Efekty graficzne i filtry</a></li>
+  <li><a href="http://localhost/s2bs1/web/app_dev.php/img/menu/size">Przycinanie</a></li>
+  <li><a href="http://localhost/s2bs1/web/app_dev.php/img/menu/">Znak wodny</a></li>
+  <li><a href="http://localhost/s2bs1/web/app_dev.php/img/menu/">Dodaj napis</a></li>
+  <li><a href="http://localhost/s2bs1/web/app_dev.php/img/menu/">Obróć</a></li>
+  <li><a href="http://localhost/s2bs1/web/app_dev.php/img/menu/">Zmiana formatu</a></li>
+  <li><a href="http://localhost/s2bs1/web/app_dev.php/img/menu/">Zmień rozdzielczość</a></li>
+  <li><a href="http://localhost/s2bs1/web/app_dev.php/img/menu/">Dodatkowe</a></li>
+</ul>
 
 {% endblock %}
 

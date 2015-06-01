@@ -1,0 +1,21 @@
+{% extends 'ImageEditorBundle::Default/menu.html.twig' %}
+
+{% block title %}Podstawowe{% endblock %}
+
+
+{% block menu %}
+
+<a href="http://localhost/s2bs1/web/app_dev.php/img/menu" class="small button" data-back >Wróć</a>
+  <form action="http://localhost/s2bs1/web/app_dev.php/img/menu/light" method="POST">
+  Jasność<br>
+    <input type="range" name="level" min="-100" max="100" value="0" oninput="this.form.amountInput.value=this.value" />
+    <input type="number" name="amountInput" min="-100" max="100" value="0" oninput="this.form.level.value=this.value" />
+  Kontrast<br>
+    <input type="range" name="contrast" min="-100" max="100" value="0" oninput="this.form.levelInput.value=this.value" />
+    <input type="number" name="levelInput" min="-100" max="100" value="0" oninput="this.form.contrast.value=this.value" />
+  Odcień<br>
+  <input type="color" name="color" />
+    <input type="submit">
+  </form>
+
+{% endblock %}

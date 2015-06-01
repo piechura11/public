@@ -40,19 +40,36 @@ class DefaultController extends Controller
 	        return $this->render('ImageEditorBundle:Default:index.html.twig', array('form'=>$form->createView()));
     }
     /**
+     * @Route("/save", name="save")
+     */
+    public function saveAction()
+    {
+    $session=$this->getRequest()->getSession();
+    $img=$session->get('obrazek');
+    $prefix = 'http://localhost/web/uploads/obrazki/'.$img;
+    return $this->render('ImageEditorBundle:Default:save.html.twig', array('image'=>$img));
+    }
+    /**
+     * @Route("/download/{img}", name="download")
+     */
+    public function downloadAction($img)
+    {
+	header('Content-Disposition: attachment; filename='.$img.'');
+	header("Content-Type: application/download");
+	readfile('http://localhost/web/uploads/obrazki/'.$img);
+    }
+    /**
      * @Route("/menu",name="menu")
      */
     public function menuAction()
     {
-    	//wybór dostępnych opcji edycji, pogrupowane w kategorie dla każdej grupy
-    	//wraz z suwakami, pokrętłami, zakresami   
-    	$session=$this->getRequest()->getSession();
-
-    return $this->render('ImageEditorBundle:Default:menu.html.twig', array('image'=>$session->get('obrazek')));
+    $session = $this->getRequest()->getSession();
+    $img = $session->get('obrazek');
+    return $this->render('ImageEditorBundle:Default:menu.html.twig', array('image'=>$img));
     }
 
     /**
-     * @Route("/menu/base", name="base")
+     * @Route("/menu/demo", name="base")
      */
     public function baseAction(Request $request)
     {
@@ -70,7 +87,6 @@ class DefaultController extends Controller
 	$negate = $request->request->get('negate');
 	$gray = $request->request->get('gray');
 	$edge = $request->request->get('edge');
-//parametry
     $colorize=array(0, 0, 0);
 
     $editor->setPrefix($prefix);
@@ -92,8 +108,6 @@ class DefaultController extends Controller
     {
     	    header('Content-Type: image/jpeg');
 
-    //funkcje: przytnij, dostosuj wymiary, powiększ, zmiejsz
-
     $session=$this->getRequest()->getSession();
     $img=$session->get('obrazek');
     $prefix = 'http://localhost/web/uploads/obrazki/'.$img;
@@ -107,5 +121,38 @@ class DefaultController extends Controller
 	}
     return $this->render('ImageEditorBundle:Default:menuSize.html.twig', array('image'=>$img));
     }
+    /**
+     * @Route("/menu/light", name="light")
+     */
+    public function lightAction(Request $request)
+    {
+    $session=$this->getRequest()->getSession();
+    $img=$session->get('obrazek');
+    $editor = $this->get('edition');
+    $prefix = 'http://localhost/web/uploads/obrazki/'.$img;
+    $uploads = __DIR__."/../../../../web/uploads/obrazki/".$img;
+
+    $request  = $this->getRequest();
+	$brigness = $request->request->get('level');
+	$contrast = $request->request->get('contrast');
+	$color = $request->request->get('color');
+    
+    if($color !== null)
+    {
+    $colorize = sscanf($color, "#%02x%02x%02x");
+    $editor->colorizeAction($prefix, $uploads, $colorize);
+    }
+
+    $editor->setPrefix($prefix);
+    $editor->setUploads($uploads);
+    $editor->contrastAction($prefix, $uploads, $contrast);
+    $editor->brignessAction($prefix, $uploads, $brigness);
+    return $this->render('ImageEditorBundle:Default:lightMenu.html.twig', array('image'=>$img));
+    }
+
+    //dodać pisanie na obrazku
+    //obracanie obrazka
+    //ramki
+
     
 }

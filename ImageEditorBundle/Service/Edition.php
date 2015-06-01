@@ -81,27 +81,22 @@ class Edition
     }
     public function resizeAction($prefix, $wsp, $uploads)
     {
-
     $source = imagecreatefromjpeg($prefix);
-    
     list($width, $height) = getimagesize($prefix);
     $newWidth = $wsp['x2']-$wsp['x1'];
     $newHeight = $wsp['y2']-$wsp['y1'];
 	$new = imagecreatetruecolor($newWidth, $newHeight);
-	imagecopyresized($new,    // uchwyt obrazka wynikowego
-	$source,                      // uchwyt obrazka źródłowego 
-	0,                         // współrzędna x punktu od którego zaczynamy nanoszenie
-	0,                       // współrzędna y punktu od którego zaczynamy nanoszenie
-	$wsp['x1'],                        // współrzędna x punktu od którego zaczynamy kopiowanie
-	$wsp['y1'],                     // współrzędna y punktu od którego zaczynamy kopiowanie
-	$newWidth,                    // szerokość skopiowanego obrazka na obrazku wynikowym
-	$newHeight,                   // wysokość skopiowanego obrazka na obrazku wynikowym
-	$newWidth,             // szerokość obszaru kopiowanego z obrazka źródłowego
-	$newHeight);            // wysokość obszaru kopiowanego z obrazka źródłowego
+	imagecopyresized($new,    
+	$source,                      
+	0,                        
+	0,                      
+	$wsp['x1'],                  
+	$wsp['y1'],                  
+	$newWidth,                    
+	$newHeight,                  
+	$newWidth,            
+	$newHeight);         
 	return imagejpeg($new, $uploads, 100);
-
-	
-
     }
 
 }
