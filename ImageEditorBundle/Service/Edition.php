@@ -79,26 +79,28 @@ class Edition
     }
     return true;
     }
-    public function resizeAction($prefix, $x1, $y1, $x2, $y2)
+    public function resizeAction($prefix, $wsp, $uploads)
     {
+
     $source = imagecreatefromjpeg($prefix);
+    
     list($width, $height) = getimagesize($prefix);
-    $newWidth = $x2 - $x1;
-    $newHeight = $y2 - $y1;
-	$mini = imagecreatetruecolor($newWidth, $newHeight);
-	imagecopyresized($mini,    // uchwyt obrazka wynikowego
+    $newWidth = $wsp['x2']-$wsp['x1'];
+    $newHeight = $wsp['y2']-$wsp['y1'];
+	$new = imagecreatetruecolor($newWidth, $newHeight);
+	imagecopyresized($new,    // uchwyt obrazka wynikowego
 	$source,                      // uchwyt obrazka źródłowego 
-	$x1,                         // współrzędna x punktu od którego zaczynamy nanoszenie
-	$y1,                         // współrzędna y punktu od którego zaczynamy nanoszenie
-	$x2,                         // współrzędna x punktu od którego zaczynamy kopiowanie
-	$y2,                         // współrzędna y punktu od którego zaczynamy kopiowanie
+	0,                         // współrzędna x punktu od którego zaczynamy nanoszenie
+	0,                       // współrzędna y punktu od którego zaczynamy nanoszenie
+	$wsp['x1'],                        // współrzędna x punktu od którego zaczynamy kopiowanie
+	$wsp['y1'],                     // współrzędna y punktu od którego zaczynamy kopiowanie
 	$newWidth,                    // szerokość skopiowanego obrazka na obrazku wynikowym
 	$newHeight,                   // wysokość skopiowanego obrazka na obrazku wynikowym
-	$width,             // szerokość obszaru kopiowanego z obrazka źródłowego
-	$height);            // wysokość obszaru kopiowanego z obrazka źródłowego
+	$newWidth,             // szerokość obszaru kopiowanego z obrazka źródłowego
+	$newHeight);            // wysokość obszaru kopiowanego z obrazka źródłowego
+	return imagejpeg($new, $uploads, 100);
 
-	imagejpeg($mini, null, 100);
-	return true;
+	
 
     }
 

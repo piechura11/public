@@ -34,7 +34,7 @@ class DefaultController extends Controller
 	            $em->flush();
 	            $session=$this->getRequest()->getSession();
 	            $session->set('obrazek', $image->getPath());
-	            $this->redirect($this->generateUrl('base'));
+	            $this->redirect($this->generateUrl('menu'));
 	        }
 	    }
 	        return $this->render('ImageEditorBundle:Default:index.html.twig', array('form'=>$form->createView()));
@@ -59,6 +59,7 @@ class DefaultController extends Controller
     header('Content-Type: image/jpeg');
     $session=$this->getRequest()->getSession();
     $img=$session->get('obrazek');
+    $editor = $this->get('edition');
     $prefix = 'http://localhost/web/uploads/obrazki/'.$img;
     $uploads = __DIR__."/../../../../web/uploads/obrazki/".$img;
 
@@ -69,8 +70,7 @@ class DefaultController extends Controller
 	$negate = $request->request->get('negate');
 	$gray = $request->request->get('gray');
 	$edge = $request->request->get('edge');
-    $editor = $this->get('edition');
-
+//parametry
     $colorize=array(0, 0, 0);
 
     $editor->setPrefix($prefix);
@@ -90,43 +90,22 @@ class DefaultController extends Controller
      */
     public function sizeAction(Request $request)
     {
+    	    header('Content-Type: image/jpeg');
+
     //funkcje: przytnij, dostosuj wymiary, powiększ, zmiejsz
-    header('Content-Type: image/jpeg');
+
     $session=$this->getRequest()->getSession();
     $img=$session->get('obrazek');
     $prefix = 'http://localhost/web/uploads/obrazki/'.$img;
+    $uploads = __DIR__."/../../../../web/uploads/obrazki/".$img;
     $request  = $this->getRequest();
+    $wsp = array();
 	$wsp = $request->request->all();
-	echo 'X1: '.$wsp['x1']; 
-		echo 'X1: '.$wsp['y1']; 
-			echo 'X1: '.$wsp['x2']; 
-
-	
-/*
-    $source = imagecreatefromjpeg($prefix);
-    list($width, $height) = getimagesize($prefix);
-
-    ///zczytanie wymiarów fotki
-    $newWidth = 300;
-	$newHeight = 225;
-	$mini = imagecreatetruecolor($newWidth, $newHeight);
-
-	imagecopyresized($mini,    // uchwyt obrazka wynikowego
-	$source,                      // uchwyt obrazka źródłowego 
-	20,                         // współrzędna x punktu od którego zaczynamy nanoszenie
-	60,                         // współrzędna y punktu od którego zaczynamy nanoszenie
-	0,                         // współrzędna x punktu od którego zaczynamy kopiowanie
-	0,                         // współrzędna y punktu od którego zaczynamy kopiowanie
-	$newWidth,                    // szerokość skopiowanego obrazka na obrazku wynikowym
-	$newHeight,                   // wysokość skopiowanego obrazka na obrazku wynikowym
-	$width,             // szerokość obszaru kopiowanego z obrazka źródłowego
-	$height);            // wysokość obszaru kopiowanego z obrazka źródłowego
-
-	imagejpeg($mini, null, 100);
-*/
+	if(!empty($wsp)){
+	    $edition = $this->get('edition');	
+	    $edition->resizeAction($prefix, $wsp, $uploads);
+	}
     return $this->render('ImageEditorBundle:Default:menuSize.html.twig', array('image'=>$img));
     }
-
-
     
 }
